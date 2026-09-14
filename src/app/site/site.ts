@@ -69,7 +69,7 @@ export class SiteComponent implements OnInit, OnDestroy {
 
   private pageTitle(): string {
     const p = this.data().profile;
-    return p.name ? `${p.name} — ${p.role || 'Portfolio'}` : 'Portfolio';
+    return p.name ? `${p.name} - ${p.role || 'Portfolio'}` : 'Portfolio';
   }
 
   /** Highlights the nav entry for whichever section is nearest the top. */
