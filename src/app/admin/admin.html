@@ -81,7 +81,7 @@
 
     @if (loading()) {
       <p class="bar muted">Loading your content…</p>
-    } @else if (model(); as m) {
+    } @else if (model()) {
       <div class="layout">
         <nav class="tabs" aria-label="Content sections">
           @for (t of tabs(); track t.key) {
@@ -106,15 +106,15 @@
                   @if (f.type === 'textarea') {
                     <textarea
                       rows="3"
-                      [ngModel]="$any(m.profile)[f.key]"
-                      (ngModelChange)="setValue($any(m.profile), f.key, $event)"
+                      [ngModel]="$any(model()!.profile)[f.key]"
+                      (ngModelChange)="setValue($any(model()!.profile), f.key, $event)"
                       [name]="'profile-' + f.key"
                     ></textarea>
                   } @else {
                     <input
                       [type]="inputType(f)"
-                      [ngModel]="$any(m.profile)[f.key]"
-                      (ngModelChange)="setValue($any(m.profile), f.key, $event)"
+                      [ngModel]="$any(model()!.profile)[f.key]"
+                      (ngModelChange)="setValue($any(model()!.profile), f.key, $event)"
                       [name]="'profile-' + f.key"
                     />
                   }
@@ -126,10 +126,10 @@
             </div>
 
             <h3>Links</h3>
-            @if (!m.profile.socials.length) {
+            @if (!model()!.profile.socials.length) {
               <p class="empty">No links yet. Add GitHub, LinkedIn, or anywhere else you post.</p>
             }
-            @for (s of m.profile.socials; track s.id; let i = $index) {
+            @for (s of model()!.profile.socials; track s.id; let i = $index) {
               <div class="inline-row">
                 @for (f of socialFields; track f.key) {
                   <label class="field">
@@ -158,15 +158,15 @@
                   @if (f.type === 'textarea') {
                     <textarea
                       rows="10"
-                      [ngModel]="$any(m.about)[f.key]"
-                      (ngModelChange)="setValue($any(m.about), f.key, $event)"
+                      [ngModel]="$any(model()!.about)[f.key]"
+                      (ngModelChange)="setValue($any(model()!.about), f.key, $event)"
                       [name]="'about-' + f.key"
                     ></textarea>
                   } @else {
                     <input
                       type="text"
-                      [ngModel]="$any(m.about)[f.key]"
-                      (ngModelChange)="setValue($any(m.about), f.key, $event)"
+                      [ngModel]="$any(model()!.about)[f.key]"
+                      (ngModelChange)="setValue($any(model()!.about), f.key, $event)"
                       [name]="'about-' + f.key"
                     />
                   }
@@ -296,9 +296,9 @@
             <p class="muted">
               Upload a PDF. The download button on your site links to whatever is here.
             </p>
-            @if (m.profile.resumeFile) {
+            @if (model()!.profile.resumeFile) {
               <p class="current-file">
-                Current file: <code class="path">{{ m.profile.resumeFile }}</code>
+                Current file: <code class="path">{{ model()!.profile.resumeFile }}</code>
                 <button class="ghost small" type="button" (click)="clearResume()">
                   Remove link
                 </button>
