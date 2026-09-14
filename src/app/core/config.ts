@@ -4,7 +4,7 @@
  * but setting them here saves typing every time.
  */
 export const REPO_DEFAULTS = {
-  owner: 'your-github-username',
+  owner: 'avinash-betha',
   repo: 'portfolio',
   branch: 'main',
 };
