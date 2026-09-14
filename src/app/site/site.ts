@@ -27,6 +27,7 @@ export class SiteComponent implements OnInit, OnDestroy {
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   private observer?: IntersectionObserver;
 
+  readonly currentYear = new Date().getFullYear();
   readonly data = this.content.data;
   readonly state = this.content.state;
   readonly active = signal('about');
