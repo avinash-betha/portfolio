@@ -1,0 +1,476 @@
+:host {
+  display: block;
+}
+
+.notice {
+  max-width: 44ch;
+  margin: 18vh auto;
+  padding: 0 1.5rem;
+}
+
+.notice h1 {
+  font-size: var(--step-2);
+  margin-bottom: 0.7rem;
+}
+
+code {
+  background: var(--paper-sunk);
+  padding: 0.1em 0.35em;
+  font-size: 0.88em;
+}
+
+.shell {
+  max-width: var(--shell);
+  margin: 0 auto;
+  padding: 0 1.6rem;
+}
+
+/* ---------- identity rail ---------- */
+
+.rail {
+  padding: 3.2rem 0 2rem;
+}
+
+.name {
+  font-size: var(--step-4);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+}
+
+.role {
+  font-family: var(--grotesk);
+  font-size: var(--step-1);
+  color: var(--teal);
+  margin: 0.55rem 0 0;
+  font-weight: 500;
+}
+
+.tagline {
+  margin-top: 0.8rem;
+  max-width: 34ch;
+  color: var(--ink-soft);
+}
+
+.nav {
+  display: none;
+}
+
+.rail-foot {
+  margin-top: 1.6rem;
+}
+
+.resume {
+  display: inline-block;
+  font-family: var(--grotesk);
+  font-weight: 500;
+  font-size: var(--step--1);
+  color: var(--ink);
+  text-decoration: none;
+  padding: 0.62rem 1.1rem;
+  border: 1px solid var(--ink);
+  background: transparent;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.resume:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.socials {
+  list-style: none;
+  padding: 0;
+  margin: 1.3rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 1.1rem;
+  font-size: var(--step--1);
+}
+
+.socials a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1px;
+}
+
+.socials a:hover {
+  color: var(--teal);
+  border-bottom-color: var(--teal);
+}
+
+.where {
+  margin: 0.9rem 0 0;
+  font-size: var(--step--1);
+  color: var(--ink-faint);
+}
+
+/* ---------- sections ---------- */
+
+.content {
+  padding-bottom: 4rem;
+}
+
+.block {
+  padding: 2.6rem 0 0.4rem;
+}
+
+.block-title {
+  font-size: var(--step-2);
+  margin-bottom: 1.4rem;
+  position: relative;
+  display: inline-block;
+}
+
+/* the ochre acts as a highlighter stroke beneath each section heading */
+.block-title::after {
+  content: '';
+  position: absolute;
+  left: -0.12em;
+  right: -0.12em;
+  bottom: 0.04em;
+  height: 0.34em;
+  background: var(--ochre);
+  opacity: 0.55;
+  z-index: -1;
+}
+
+.prose {
+  font-size: 1.05rem;
+}
+
+.ledger {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.35rem;
+  padding: 1.5rem 0 1.5rem 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.gutter {
+  font-family: var(--grotesk);
+  font-size: var(--step--1);
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+  padding-top: 0.22rem;
+  transition: color 160ms ease;
+}
+
+.row:hover .gutter {
+  color: var(--teal);
+}
+
+.record-title {
+  font-size: var(--step-1);
+  font-weight: 600;
+}
+
+.record-title a {
+  text-decoration: none;
+  color: var(--ink);
+  background-image: linear-gradient(var(--ochre), var(--ochre));
+  background-size: 0% 0.28em;
+  background-repeat: no-repeat;
+  background-position: 0 88%;
+  transition: background-size 220ms ease;
+}
+
+.record-title a:hover {
+  background-size: 100% 0.28em;
+}
+
+.at {
+  font-weight: 400;
+  color: var(--ink-faint);
+  font-size: 0.85em;
+  margin: 0 0.15em;
+}
+
+.record-meta {
+  margin: 0.25rem 0 0;
+  font-family: var(--grotesk);
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+}
+
+.record-body {
+  margin: 0.6rem 0 0;
+  color: var(--ink-soft);
+}
+
+.bullets {
+  margin: 0.6rem 0 0;
+  padding-left: 1.05rem;
+  color: var(--ink-soft);
+}
+
+.bullets li {
+  margin-bottom: 0.3rem;
+}
+
+.bullets li::marker {
+  color: var(--ochre);
+}
+
+.tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.5rem;
+  padding: 0;
+  margin: 0.75rem 0 0;
+}
+
+.tags li {
+  font-family: var(--grotesk);
+  font-size: 0.78rem;
+  color: var(--teal-deep);
+  background: rgba(14, 92, 99, 0.09);
+  padding: 0.17rem 0.5rem;
+}
+
+.links {
+  margin: 0.8rem 0 0;
+  display: flex;
+  gap: 1.1rem;
+  font-family: var(--grotesk);
+  font-size: var(--step--1);
+}
+
+.mark {
+  font-family: var(--grotesk);
+  font-size: 0.72rem;
+  color: var(--ink);
+  background: var(--ochre);
+  padding: 0.16rem 0.45rem;
+  display: inline-block;
+}
+
+/* ---------- certificates ---------- */
+
+.plates {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+}
+
+.plate {
+  border-top: 2px solid var(--ink);
+  padding-top: 0.85rem;
+}
+
+.plate-shot {
+  display: block;
+  margin-bottom: 0.8rem;
+  background: var(--paper-sunk);
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.plate-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.plate-title {
+  font-size: var(--step-0);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.plate-meta {
+  margin: 0.3rem 0 0;
+  font-family: var(--grotesk);
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+}
+
+.plate-link {
+  display: inline-block;
+  margin-top: 0.55rem;
+  font-family: var(--grotesk);
+  font-size: var(--step--1);
+}
+
+/* ---------- skills ---------- */
+
+.skills {
+  margin: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.skill-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.3rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.skill-row dt {
+  font-family: var(--grotesk);
+  font-weight: 500;
+  color: var(--ink);
+  padding-top: 0.1rem;
+}
+
+.skill-row dd {
+  margin: 0;
+}
+
+.skill-row dd .tags {
+  margin-top: 0;
+}
+
+/* ---------- footer ---------- */
+
+.foot {
+  margin-top: 3.5rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--rule);
+  font-size: var(--step--1);
+  color: var(--ink-faint);
+}
+
+.foot a {
+  color: var(--ink-faint);
+}
+
+/* ---------- desktop: rail beside content ---------- */
+
+@media (min-width: 62rem) {
+  .shell {
+    display: grid;
+    grid-template-columns: var(--rail) minmax(0, 1fr);
+    gap: 4.5rem;
+    align-items: start;
+  }
+
+  .rail {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    padding: 5.5rem 0 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .nav {
+    display: block;
+    margin: 2rem 0;
+  }
+
+  .nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.32rem 0;
+    font-family: var(--grotesk);
+    font-size: var(--step--1);
+    color: var(--ink-faint);
+    text-decoration: none;
+  }
+
+  .tick {
+    width: 1.5rem;
+    height: 1px;
+    background: var(--rule);
+    transition: width 200ms ease, background 200ms ease;
+  }
+
+  .nav a:hover,
+  .nav a.current {
+    color: var(--ink);
+  }
+
+  .nav a:hover .tick,
+  .nav a.current .tick {
+    width: 2.6rem;
+    background: var(--teal);
+  }
+
+  .content {
+    padding: 5.5rem 0 5rem;
+  }
+
+  .block {
+    padding: 0 0 3.6rem;
+  }
+
+  .block + .block {
+    padding-top: 1.2rem;
+  }
+
+  .row {
+    grid-template-columns: 9rem minmax(0, 1fr);
+    gap: 1.6rem;
+  }
+
+  .skill-row {
+    grid-template-columns: 9rem minmax(0, 1fr);
+    gap: 1.6rem;
+  }
+
+  .row::before {
+    content: '';
+    position: absolute;
+    left: -1.1rem;
+    top: 1.5rem;
+    bottom: 1.5rem;
+    width: 2px;
+    background: var(--ochre);
+    opacity: 0;
+    transition: opacity 180ms ease;
+  }
+
+  .row:hover::before {
+    opacity: 1;
+  }
+}
+
+/* ---------- one page-load reveal, rail only ---------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .rail .identity,
+  .rail .nav,
+  .rail .rail-foot {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  .shell.revealed .identity,
+  .shell.revealed .nav,
+  .shell.revealed .rail-foot {
+    opacity: 1;
+    transform: none;
+    transition: opacity 520ms ease, transform 520ms ease;
+  }
+
+  .shell.revealed .nav {
+    transition-delay: 90ms;
+  }
+
+  .shell.revealed .rail-foot {
+    transition-delay: 170ms;
+  }
+}

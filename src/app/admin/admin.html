@@ -1,0 +1,342 @@
+@if (!gh.signedIn()) {
+  <div class="gate">
+    <form class="gate-card" (ngSubmit)="submitSignIn()">
+      <h1>Sign in to edit your site</h1>
+      <p class="gate-note">
+        Your token stays in this browser tab only and is cleared when you close it.
+      </p>
+
+      <label class="field">
+        <span class="label">GitHub access token</span>
+        <input
+          type="password"
+          name="token"
+          [(ngModel)]="token"
+          autocomplete="current-password"
+          placeholder="github_pat_…"
+          required
+        />
+        <span class="hint">
+          Fine-grained token with Contents set to Read and write on this repository.
+        </span>
+      </label>
+
+      <div class="grid-3">
+        <label class="field">
+          <span class="label">Owner</span>
+          <input type="text" name="owner" [(ngModel)]="repoForm.owner" required />
+        </label>
+        <label class="field">
+          <span class="label">Repository</span>
+          <input type="text" name="repo" [(ngModel)]="repoForm.repo" required />
+        </label>
+        <label class="field">
+          <span class="label">Branch</span>
+          <input type="text" name="branch" [(ngModel)]="repoForm.branch" required />
+        </label>
+      </div>
+
+      @if (signInError()) {
+        <p class="alert">{{ signInError() }}</p>
+      }
+
+      <button class="primary" type="submit" [disabled]="signingIn()">
+        {{ signingIn() ? 'Checking…' : 'Sign in' }}
+      </button>
+    </form>
+  </div>
+} @else {
+  <div class="admin">
+    <header class="topbar">
+      <div class="brand">
+        <strong>Content</strong>
+        <span class="repo">{{ gh.target().owner }}/{{ gh.target().repo }}</span>
+      </div>
+      <div class="topbar-actions">
+        @if (dirty()) {
+          <span class="pill">Unpublished changes</span>
+        }
+        <a class="ghost" href=".">View site</a>
+        <button class="ghost" type="button" (click)="loadContent()" [disabled]="loading()">
+          Reload
+        </button>
+        <button class="ghost" type="button" (click)="signOut()">Sign out</button>
+        <button
+          class="primary"
+          type="button"
+          (click)="publish()"
+          [disabled]="publishing() || !dirty()"
+        >
+          {{ publishing() ? 'Publishing…' : 'Publish changes' }}
+        </button>
+      </div>
+    </header>
+
+    @if (error()) {
+      <p class="alert bar">{{ error() }}</p>
+    }
+    @if (message()) {
+      <p class="ok bar">{{ message() }}</p>
+    }
+
+    @if (loading()) {
+      <p class="bar muted">Loading your content…</p>
+    } @else if (model(); as m) {
+      <div class="layout">
+        <nav class="tabs" aria-label="Content sections">
+          @for (t of tabs(); track t.key) {
+            <button
+              type="button"
+              [class.current]="tab() === t.key"
+              (click)="tab.set(t.key)"
+            >
+              {{ t.label }}
+            </button>
+          }
+        </nav>
+
+        <div class="panel">
+          <!-- profile -->
+          @if (tab() === 'profile') {
+            <h2>Profile</h2>
+            <div class="fields">
+              @for (f of profileFields; track f.key) {
+                <label class="field" [class.wide]="!!f.wide">
+                  <span class="label">{{ f.label }}</span>
+                  @if (f.type === 'textarea') {
+                    <textarea
+                      rows="3"
+                      [ngModel]="$any(m.profile)[f.key]"
+                      (ngModelChange)="setValue($any(m.profile), f.key, $event)"
+                      [name]="'profile-' + f.key"
+                    ></textarea>
+                  } @else {
+                    <input
+                      [type]="inputType(f)"
+                      [ngModel]="$any(m.profile)[f.key]"
+                      (ngModelChange)="setValue($any(m.profile), f.key, $event)"
+                      [name]="'profile-' + f.key"
+                    />
+                  }
+                  @if (f.hint) {
+                    <span class="hint">{{ f.hint }}</span>
+                  }
+                </label>
+              }
+            </div>
+
+            <h3>Links</h3>
+            @if (!m.profile.socials.length) {
+              <p class="empty">No links yet. Add GitHub, LinkedIn, or anywhere else you post.</p>
+            }
+            @for (s of m.profile.socials; track s.id; let i = $index) {
+              <div class="inline-row">
+                @for (f of socialFields; track f.key) {
+                  <label class="field">
+                    <span class="label">{{ f.label }}</span>
+                    <input
+                      [type]="inputType(f)"
+                      [ngModel]="$any(s)[f.key]"
+                      (ngModelChange)="setValue($any(s), f.key, $event)"
+                      [name]="'social-' + i + '-' + f.key"
+                    />
+                  </label>
+                }
+                <button class="danger" type="button" (click)="removeSocial(i)">Remove</button>
+              </div>
+            }
+            <button class="ghost" type="button" (click)="addSocial()">Add a link</button>
+          }
+
+          <!-- about -->
+          @if (tab() === 'about') {
+            <h2>About</h2>
+            <div class="fields">
+              @for (f of aboutFields; track f.key) {
+                <label class="field" [class.wide]="!!f.wide">
+                  <span class="label">{{ f.label }}</span>
+                  @if (f.type === 'textarea') {
+                    <textarea
+                      rows="10"
+                      [ngModel]="$any(m.about)[f.key]"
+                      (ngModelChange)="setValue($any(m.about), f.key, $event)"
+                      [name]="'about-' + f.key"
+                    ></textarea>
+                  } @else {
+                    <input
+                      type="text"
+                      [ngModel]="$any(m.about)[f.key]"
+                      (ngModelChange)="setValue($any(m.about), f.key, $event)"
+                      [name]="'about-' + f.key"
+                    />
+                  }
+                  @if (f.hint) {
+                    <span class="hint">{{ f.hint }}</span>
+                  }
+                </label>
+              }
+            </div>
+          }
+
+          <!-- collections -->
+          @if (collection(tab()); as c) {
+            <div class="panel-head">
+              <h2>{{ c.label }}</h2>
+              <button class="primary small" type="button" (click)="add(c)">
+                Add {{ c.itemLabel }}
+              </button>
+            </div>
+
+            @if (!rows(c.key).length) {
+              <p class="empty">
+                Nothing here yet. Add your first {{ c.itemLabel }} to show this section.
+              </p>
+            }
+
+            <ul class="items">
+              @for (row of rows(c.key); track row['id']; let i = $index) {
+                <li class="item" [class.open]="openRow() === row['id']">
+                  <div class="item-head">
+                    <button class="item-toggle" type="button" (click)="toggleRow(row['id'])">
+                      <span class="chev" aria-hidden="true">{{ openRow() === row['id'] ? '–' : '+' }}</span>
+                      <span class="item-title">{{ rowTitle(c, row) }}</span>
+                      <span class="item-sub">{{ rowSubtitle(c, row) }}</span>
+                    </button>
+                    <div class="item-tools">
+                      <button type="button" (click)="move(c, i, -1)" [disabled]="i === 0" title="Move up">↑</button>
+                      <button
+                        type="button"
+                        (click)="move(c, i, 1)"
+                        [disabled]="i === rows(c.key).length - 1"
+                        title="Move down"
+                      >↓</button>
+                      <button class="danger" type="button" (click)="remove(c, i)">Delete</button>
+                    </div>
+                  </div>
+
+                  @if (openRow() === row['id']) {
+                    <div class="fields item-body">
+                      @for (f of c.fields; track f.key) {
+                        <label class="field" [class.wide]="!!f.wide">
+                          <span class="label">{{ f.label }}</span>
+
+                          @switch (f.type) {
+                            @case ('textarea') {
+                              <textarea
+                                rows="4"
+                                [ngModel]="row[f.key]"
+                                (ngModelChange)="setValue(row, f.key, $event)"
+                                [name]="c.key + '-' + i + '-' + f.key"
+                              ></textarea>
+                            }
+                            @case ('lines') {
+                              <textarea
+                                rows="5"
+                                [ngModel]="linesValue(row, f.key)"
+                                (ngModelChange)="setLines(row, f.key, $event)"
+                                [name]="c.key + '-' + i + '-' + f.key"
+                              ></textarea>
+                            }
+                            @case ('bool') {
+                              <span class="check">
+                                <input
+                                  type="checkbox"
+                                  [ngModel]="row[f.key]"
+                                  (ngModelChange)="setValue(row, f.key, $event)"
+                                  [name]="c.key + '-' + i + '-' + f.key"
+                                />
+                                <span>Yes</span>
+                              </span>
+                            }
+                            @case ('image') {
+                              <span class="upload">
+                                @if (row[f.key]) {
+                                  <code class="path">{{ row[f.key] }}</code>
+                                  <button
+                                    class="ghost small"
+                                    type="button"
+                                    (click)="setValue(row, f.key, '')"
+                                  >Remove image</button>
+                                }
+                                <input
+                                  type="file"
+                                  accept="image/*"
+                                  (change)="uploadImage($event, row, f.key)"
+                                />
+                                @if (uploading() === row['id'] + f.key) {
+                                  <span class="hint">Uploading…</span>
+                                }
+                              </span>
+                            }
+                            @default {
+                              <input
+                                [type]="inputType(f)"
+                                [ngModel]="row[f.key]"
+                                (ngModelChange)="setValue(row, f.key, $event)"
+                                [name]="c.key + '-' + i + '-' + f.key"
+                              />
+                            }
+                          }
+
+                          @if (f.hint) {
+                            <span class="hint">{{ f.hint }}</span>
+                          }
+                        </label>
+                      }
+                    </div>
+                  }
+                </li>
+              }
+            </ul>
+          }
+
+          <!-- resume -->
+          @if (tab() === 'resume') {
+            <h2>Resume</h2>
+            <p class="muted">
+              Upload a PDF. The download button on your site links to whatever is here.
+            </p>
+            @if (m.profile.resumeFile) {
+              <p class="current-file">
+                Current file: <code class="path">{{ m.profile.resumeFile }}</code>
+                <button class="ghost small" type="button" (click)="clearResume()">
+                  Remove link
+                </button>
+              </p>
+            } @else {
+              <p class="empty">No resume uploaded, so the download button is hidden.</p>
+            }
+            <label class="field">
+              <span class="label">Upload a new PDF</span>
+              <input type="file" accept="application/pdf" (change)="uploadResume($event)" />
+              @if (uploading() === 'resume') {
+                <span class="hint">Uploading…</span>
+              }
+            </label>
+          }
+
+          <!-- visibility -->
+          @if (tab() === 'sections') {
+            <h2>Visibility</h2>
+            <p class="muted">Hide a section without deleting anything inside it.</p>
+            <ul class="toggles">
+              @for (t of toggles; track t.key) {
+                <li>
+                  <label class="check">
+                    <input
+                      type="checkbox"
+                      [ngModel]="visible(t.key)"
+                      (ngModelChange)="setVisible(t.key, $event)"
+                      [name]="'vis-' + t.key"
+                    />
+                    <span>{{ t.label }}</span>
+                  </label>
+                </li>
+              }
+            </ul>
+          }
+        </div>
+      </div>
+    }
+  </div>
+}

@@ -1,0 +1,91 @@
+{
+  "profile": {
+    "name": "Your Name",
+    "role": "Software engineer",
+    "tagline": "I build web applications and write about what I learn along the way.",
+    "location": "Philadelphia, PA",
+    "email": "you@example.com",
+    "resumeFile": "",
+    "socials": [
+      { "id": "gh01", "label": "GitHub", "url": "https://github.com/your-github-username" },
+      { "id": "li01", "label": "LinkedIn", "url": "https://linkedin.com/in/your-handle" }
+    ]
+  },
+  "about": {
+    "heading": "About",
+    "body": "Replace this text from the admin panel. Write two or three short paragraphs about the work you do, what you are good at, and what you are looking for next.\n\nLeave a blank line between paragraphs and they will render separately."
+  },
+  "experience": [
+    {
+      "id": "exp01",
+      "role": "Software Engineer",
+      "company": "Example Corp",
+      "companyUrl": "https://example.com",
+      "start": "Mar 2024",
+      "end": "",
+      "location": "Remote",
+      "summary": "One or two sentences on what you own and who you work with.",
+      "highlights": [
+        "Something you shipped, with a number attached where you can",
+        "A problem you fixed and what changed as a result"
+      ],
+      "tech": ["Angular", "TypeScript", "PostgreSQL"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "prj01",
+      "name": "Example project",
+      "description": "What it does and why you built it, in two sentences.",
+      "repo": "https://github.com/your-github-username/example",
+      "demo": "",
+      "tech": ["Angular", "Node.js"],
+      "featured": true
+    }
+  ],
+  "certificates": [
+    {
+      "id": "crt01",
+      "title": "Example Certification",
+      "issuer": "Issuing Body",
+      "issued": "Aug 2025",
+      "credentialId": "ABC-1234",
+      "url": "https://example.com/verify/ABC-1234",
+      "image": ""
+    }
+  ],
+  "skills": [
+    { "id": "skl01", "group": "Languages", "items": ["TypeScript", "Python", "SQL"] },
+    { "id": "skl02", "group": "Frameworks", "items": ["Angular", "Express"] },
+    { "id": "skl03", "group": "Tools", "items": ["Git", "Docker", "GitHub Actions"] }
+  ],
+  "education": [
+    {
+      "id": "edu01",
+      "qualification": "B.Tech, Computer Science",
+      "school": "Your University",
+      "start": "2020",
+      "end": "2024",
+      "detail": ""
+    }
+  ],
+  "blogs": [
+    {
+      "id": "blg01",
+      "title": "An example post",
+      "url": "https://example.com/post",
+      "source": "Personal blog",
+      "date": "Jun 2026",
+      "excerpt": "A sentence describing what the post covers."
+    }
+  ],
+  "visible": {
+    "about": true,
+    "experience": true,
+    "projects": true,
+    "certificates": true,
+    "skills": true,
+    "education": true,
+    "blogs": true
+  }
+}

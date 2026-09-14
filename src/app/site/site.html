@@ -1,0 +1,258 @@
+<a class="skip" href="#main">Skip to content</a>
+
+@if (state() === 'error') {
+  <div class="notice">
+    <h1>Content has not been added yet</h1>
+    <p>
+      Open <code>/admin</code>, sign in with your GitHub token, and publish your first changes.
+      This page reads <code>content/portfolio.json</code> and it could not be loaded.
+    </p>
+  </div>
+} @else {
+  <div class="shell" [class.revealed]="revealed()">
+    <header class="rail">
+      <div class="identity">
+        <h1 class="name">{{ data().profile.name || 'Your name' }}</h1>
+        <p class="role">{{ data().profile.role }}</p>
+        @if (data().profile.tagline) {
+          <p class="tagline">{{ data().profile.tagline }}</p>
+        }
+      </div>
+
+      <nav class="nav" aria-label="Sections">
+        <ul>
+          @for (item of nav(); track item.id) {
+            <li>
+              <a
+                [href]="'#' + item.id"
+                [class.current]="active() === item.id"
+                [attr.aria-current]="active() === item.id ? 'true' : null"
+              >
+                <span class="tick" aria-hidden="true"></span>{{ item.label }}
+              </a>
+            </li>
+          }
+        </ul>
+      </nav>
+
+      <div class="rail-foot">
+        @if (resumeHref()) {
+          <a class="resume" [href]="resumeHref()" download>Download resume</a>
+        }
+        <ul class="socials">
+          @if (data().profile.email) {
+            <li><a [href]="'mailto:' + data().profile.email">{{ data().profile.email }}</a></li>
+          }
+          @for (s of data().profile.socials; track s.id) {
+            <li><a [href]="s.url" target="_blank" rel="noopener">{{ s.label }}</a></li>
+          }
+        </ul>
+        @if (data().profile.location) {
+          <p class="where">{{ data().profile.location }}</p>
+        }
+      </div>
+    </header>
+
+    <main id="main" class="content">
+      @if (data().visible.about && (data().about.body || data().about.heading)) {
+        <section id="about" class="block">
+          <h2 class="block-title">{{ data().about.heading || 'About' }}</h2>
+          <div class="prose">
+            @for (para of paragraphs(data().about.body); track $index) {
+              <p>{{ para }}</p>
+            }
+          </div>
+        </section>
+      }
+
+      @if (data().visible.experience && data().experience.length) {
+        <section id="experience" class="block">
+          <h2 class="block-title">Experience</h2>
+          <ol class="ledger">
+            @for (job of data().experience; track job.id) {
+              <li class="row">
+                <div class="gutter">{{ period(job.start, job.end) }}</div>
+                <div class="record">
+                  <h3 class="record-title">
+                    {{ job.role }}
+                    @if (job.company) {
+                      <span class="at">at</span>
+                      @if (job.companyUrl) {
+                        <a [href]="job.companyUrl" target="_blank" rel="noopener">{{ job.company }}</a>
+                      } @else {
+                        <span>{{ job.company }}</span>
+                      }
+                    }
+                  </h3>
+                  @if (job.location) {
+                    <p class="record-meta">{{ job.location }}</p>
+                  }
+                  @if (job.summary) {
+                    <p class="record-body">{{ job.summary }}</p>
+                  }
+                  @if (job.highlights.length) {
+                    <ul class="bullets">
+                      @for (h of job.highlights; track $index) {
+                        <li>{{ h }}</li>
+                      }
+                    </ul>
+                  }
+                  @if (job.tech.length) {
+                    <ul class="tags">
+                      @for (t of job.tech; track $index) {
+                        <li>{{ t }}</li>
+                      }
+                    </ul>
+                  }
+                </div>
+              </li>
+            }
+          </ol>
+        </section>
+      }
+
+      @if (data().visible.projects && data().projects.length) {
+        <section id="projects" class="block">
+          <h2 class="block-title">Projects</h2>
+          <ul class="ledger">
+            @for (p of featuredProjects(); track p.id) {
+              <li class="row row--project" [class.is-featured]="p.featured">
+                <div class="gutter gutter--mark">
+                  @if (p.featured) {
+                    <span class="mark">Featured</span>
+                  }
+                </div>
+                <div class="record">
+                  <h3 class="record-title">{{ p.name }}</h3>
+                  @if (p.description) {
+                    <p class="record-body">{{ p.description }}</p>
+                  }
+                  @if (p.tech.length) {
+                    <ul class="tags">
+                      @for (t of p.tech; track $index) {
+                        <li>{{ t }}</li>
+                      }
+                    </ul>
+                  }
+                  <p class="links">
+                    @if (p.repo) {
+                      <a [href]="p.repo" target="_blank" rel="noopener">Source code</a>
+                    }
+                    @if (p.demo) {
+                      <a [href]="p.demo" target="_blank" rel="noopener">Live site</a>
+                    }
+                  </p>
+                </div>
+              </li>
+            }
+          </ul>
+        </section>
+      }
+
+      @if (data().visible.certificates && data().certificates.length) {
+        <section id="certificates" class="block">
+          <h2 class="block-title">Certificates</h2>
+          <ul class="plates">
+            @for (c of data().certificates; track c.id) {
+              <li class="plate">
+                @if (c.image) {
+                  <a
+                    class="plate-shot"
+                    [href]="c.url || asset(c.image)"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <img [src]="asset(c.image)" [alt]="c.title + ' certificate'" loading="lazy" />
+                  </a>
+                }
+                <div class="plate-body">
+                  <h3 class="plate-title">{{ c.title }}</h3>
+                  <p class="plate-meta">
+                    {{ c.issuer }}@if (c.issuer && c.issued) {<span>, </span>}{{ c.issued }}
+                  </p>
+                  @if (c.credentialId) {
+                    <p class="plate-meta">Credential {{ c.credentialId }}</p>
+                  }
+                  @if (c.url) {
+                    <a class="plate-link" [href]="c.url" target="_blank" rel="noopener">
+                      Verify certificate
+                    </a>
+                  }
+                </div>
+              </li>
+            }
+          </ul>
+        </section>
+      }
+
+      @if (data().visible.skills && data().skills.length) {
+        <section id="skills" class="block">
+          <h2 class="block-title">Skills</h2>
+          <dl class="skills">
+            @for (g of data().skills; track g.id) {
+              <div class="skill-row">
+                <dt>{{ g.group }}</dt>
+                <dd>
+                  <ul class="tags">
+                    @for (item of g.items; track $index) {
+                      <li>{{ item }}</li>
+                    }
+                  </ul>
+                </dd>
+              </div>
+            }
+          </dl>
+        </section>
+      }
+
+      @if (data().visible.education && data().education.length) {
+        <section id="education" class="block">
+          <h2 class="block-title">Education</h2>
+          <ol class="ledger">
+            @for (e of data().education; track e.id) {
+              <li class="row">
+                <div class="gutter">{{ period(e.start, e.end) }}</div>
+                <div class="record">
+                  <h3 class="record-title">{{ e.qualification }}</h3>
+                  <p class="record-meta">{{ e.school }}</p>
+                  @if (e.detail) {
+                    <p class="record-body">{{ e.detail }}</p>
+                  }
+                </div>
+              </li>
+            }
+          </ol>
+        </section>
+      }
+
+      @if (data().visible.blogs && data().blogs.length) {
+        <section id="blogs" class="block">
+          <h2 class="block-title">Writing</h2>
+          <ul class="ledger">
+            @for (b of data().blogs; track b.id) {
+              <li class="row">
+                <div class="gutter">{{ b.date }}</div>
+                <div class="record">
+                  <h3 class="record-title">
+                    <a [href]="b.url" target="_blank" rel="noopener">{{ b.title }}</a>
+                  </h3>
+                  <p class="record-meta">{{ b.source || hostname(b.url) }}</p>
+                  @if (b.excerpt) {
+                    <p class="record-body">{{ b.excerpt }}</p>
+                  }
+                </div>
+              </li>
+            }
+          </ul>
+        </section>
+      }
+
+      <footer class="foot">
+        <p>
+          Built with Angular. Content published from the
+          <a href="admin">admin panel</a>.
+        </p>
+      </footer>
+    </main>
+  </div>
+}
