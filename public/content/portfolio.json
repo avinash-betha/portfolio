@@ -2,10 +2,10 @@
   "profile": {
     "name": "Avinash Betha",
     "role": "Software engineer",
-    "tagline": "I build web applications and write about what I learn along the way.",
-    "location": "Philadelphia, PA",
-    "email": "",
-    "resumeFile": "",
+    "tagline": "I build scalable backend services and APIs with Java and Spring Boot, and connect them to clean Angular frontends.",
+    "location": "Exton, PA",
+    "email": "avinashbetha35@gmail.com",
+    "resumeFile": "avinashbetha_resume.docx",
     "socials": [
       {
         "id": "gh01",
@@ -21,59 +21,225 @@
   },
   "about": {
     "heading": "About",
-    "body": "Replace this text from the admin panel. Write two or three short paragraphs about the work you do, what you are good at, and what you are looking for next.\n\nLeave a blank line between paragraphs and they will render separately."
+    "body": "I'm a Full Stack Developer who designs and builds scalable applications with Java, Spring Boot, Angular and SQL. Most of my work is on the backend: building APIs, tuning database access and performance, and connecting modern frontends to dependable data services.\n\nI've worked in both enterprise and product teams, from fleet management for Penske Truck Leasing to digital banking for HDFC Bank. I care about clean architecture, maintainable code and releases that go out without surprises.\n\nI'm most interested in backend architecture and system design, and I keep learning by solving real-world problems. I hold an MS in Data Science from DePaul University."
   },
   "experience": [
     {
       "id": "exp01",
-      "role": "Software Engineer",
-      "company": "Example Corp",
-      "companyUrl": "https://example.com",
-      "start": "Mar 2024",
+      "role": "Software Developer",
+      "company": "AVK Tech Solutions Inc (Client: Penske Truck Leasing)",
+      "companyUrl": "https://www.avktechinc.com/",
+      "start": "Jun 2025",
       "end": "",
-      "location": "Remote",
-      "summary": "One or two sentences on what you own and who you work with.",
+      "location": "Exton & Reading, PA · On-site",
+      "summary": "Working on FleetNet, Penske Truck Leasing's enterprise platform that manages the full truck lifecycle, from planning and pricing to remarketing and sale.",
       "highlights": [
-        "Something you shipped, with a number attached where you can",
-        "A problem you fixed and what changed as a result"
+        "Developed backend business logic for pricing, vehicle workflows and access control using Java and Spring, supporting large-scale fleet operations.",
+        "Maintained and enhanced legacy Struts 1.x flows, integrating JSP-based UI screens with backend controllers and JavaScript-driven interactions.",
+        "Implemented and optimized database access using iBatis with DB2 and Oracle to support complex reporting and pricing logic.",
+        "Worked with JWT-based authentication and identity management with Keycloak in an enterprise environment.",
+        "Contributed to WebSphere deployments, the OpenShift/Kubernetes migration and Bamboo-based CI/CD pipelines."
       ],
       "tech": [
-        "Angular",
+        "Java",
+        "Spring",
+        "Spring MVC",
+        "REST APIs",
+        "Struts 1.x",
+        "JSP",
+        "JavaScript",
+        "iBatis",
+        "SQL",
+        "DB2",
+        "Oracle",
+        "JWT",
+        "Keycloak",
+        "Role-Based Access Control",
+        "WebSphere",
+        "OpenShift",
+        "Kubernetes",
+        "Bamboo",
+        "CI/CD",
+        "Maven",
+        "Bitbucket",
+        "Git",
+        "JUnit",
+        "Mockito",
+        "Postman",
+        "Agile"
+      ]
+    },
+    {
+      "id": "m8v1qbih",
+      "role": "Software Developer (Full Stack)",
+      "company": "Fulcrum GT",
+      "companyUrl": "https://fulcrumgt.com/",
+      "start": "Jun 2024",
+      "end": "Aug 2024",
+      "location": "Illinois",
+      "summary": "Built across the full stack of ModWorks, an automotive customization platform where customers configure vehicle builds through configuration-based workflows, owning backend APIs, Next.js frontend features and Python automations that kept application data and stored assets in sync.",
+      "highlights": [
+        "Designed and built backend services and REST APIs powering vehicle configuration, application features and analytics modules.",
+        "Implemented server-side data processing and PostgreSQL integrations for core configuration workflows, with focus on clean schemas and efficient queries.",
+        "Developed responsive Next.js frontend pages and components, wiring them to backend APIs for a smooth configuration experience.",
+        "Wrote Python automation scripts to sync application data and large assets (images, configuration files) between PostgreSQL and object storage, replacing manual transfer steps.",
+        "Integrated object storage into the platform for uploading, organizing and serving large assets, keeping file metadata consistent with the database.",
+        "Handled API contract design, request validation and error handling so frontend and backend stayed aligned as features evolved.",
+        "Coordinated with business teams to gather requirements, clarify workflows and turn business needs into technical features and data flows.",
+        "Partnered with frontend and product teammates on API-to-UI integration, debugging issues end to end across UI, API and database layers.",
+        "Worked in Agile sprints, contributing to sprint planning, documentation and code reviews."
+      ],
+      "tech": [
+        "Java",
+        "Spring Boot",
+        "REST APIs",
+        "Next.js",
+        "React",
+        "JavaScript",
         "TypeScript",
-        "PostgreSQL"
+        "Python",
+        "PostgreSQL",
+        "SQL",
+        "Object Storage",
+        "Data Sync Automation",
+        "Git",
+        "Postman",
+        "Agile"
+      ]
+    },
+    {
+      "id": "p5rn3lha",
+      "role": "Software Developer",
+      "company": "Tata Consultancy Services (Client: HDFC Bank)",
+      "companyUrl": "https://www.tcs.com/",
+      "start": "Nov 2022",
+      "end": "Aug 2023",
+      "location": "India",
+      "summary": "Worked on a digital banking application for HDFC Bank supporting customer accounts, transactions and internal service workflows.",
+      "highlights": [
+        "Developed backend services and REST APIs to manage customer data, account details and transaction processing.",
+        "Implemented business validations and optimized SQL-based data access to ensure secure and reliable banking operations.",
+        "Collaborated with QA and product teams in an Agile environment, supporting feature delivery and issue resolution."
+      ],
+      "tech": [
+        "Java",
+        "Spring Boot",
+        "Spring MVC",
+        "Hibernate/JPA",
+        "REST APIs",
+        "Microservices",
+        "Oracle",
+        "SQL",
+        "JDBC",
+        "JWT",
+        "Role-Based Access Control",
+        "Batch Processing",
+        "JUnit",
+        "Mockito",
+        "Maven",
+        "Jenkins",
+        "Git",
+        "Postman",
+        "Agile"
       ]
     }
   ],
   "projects": [
     {
       "id": "prj01",
-      "name": "Example project",
-      "description": "What it does and why you built it, in two sentences.",
-      "repo": "https://github.com/your-github-username/example",
+      "name": "E-Learning Platform",
+      "description": "A full-stack e-learning system for student, instructor and admin workflows, with JWT authentication, course enrollment and progress tracking APIs. Includes a responsive Angular Material UI and backend schedulers that automate course notifications and progress reminders.",
+      "repo": "https://github.com/avinash-betha/elearning-backend",
       "demo": "",
       "tech": [
+        "Java",
+        "Spring Boot",
+        "REST APIs",
         "Angular",
-        "Node.js"
+        "Angular Material",
+        "TypeScript",
+        "MySQL",
+        "JWT",
+        "Schedulers"
       ],
       "featured": true
-    }
-  ],
-  "certificates": [
+    },
     {
-      "id": "crt01",
-      "title": "Example Certification",
-      "issuer": "Issuing Body",
-      "issued": "Aug 2025",
-      "credentialId": "ABC-1234",
-      "url": "https://example.com/verify/ABC-1234",
-      "image": ""
+      "id": "ijw8pja3",
+      "name": "Inventory Management System",
+      "featured": false,
+      "description": "A web-based inventory system for stock tracking and order management, with real-time inventory updates driven by event-based backend logic. Built with a modular service design and optimized database interactions for high performance.",
+      "repo": "",
+      "demo": "",
+      "tech": [
+        "Java",
+        "Spring Boot",
+        "REST APIs",
+        "JPA/Hibernate",
+        "Angular",
+        "TypeScript"
+      ]
+    },
+    {
+      "id": "7vorafxp",
+      "name": "Employee Management API",
+      "featured": false,
+      "description": "A backend system for managing employee, department and role data, with CRUD operations, validation and exception handling. APIs are secured with JWT authentication and documented with Swagger UI for easy testing.",
+      "repo": "",
+      "demo": "",
+      "tech": [
+        "Java",
+        "Spring Boot",
+        "REST APIs",
+        "PostgreSQL",
+        "JPA/Hibernate",
+        "JWT",
+        "Swagger"
+      ]
+    },
+    {
+      "id": "mnkliw1b",
+      "name": "Traffic Sign Detection",
+      "featured": false,
+      "description": "A CNN model trained on Indian traffic sign datasets for real-time classification, deployed on a PYNQ-Z2 FPGA board with a USB camera for live video. Features a low-latency inference pipeline with audio alerts for drivers.",
+      "repo": "",
+      "demo": "",
+      "tech": [
+        "Python",
+        "CNN",
+        "Machine Learning",
+        "Computer Vision",
+        "PYNQ-Z2 FPGA"
+      ]
+    },
+    {
+      "id": "bzkodpun",
+      "name": "Team Task Board (Jira-style)",
+      "featured": false,
+      "description": "A collaborative project management board with workspaces, sprints and drag-and-drop tasks that update live for every team member over WebSockets. Includes role-based permissions, comments, activity history and email notifications for assignments and due dates.",
+      "repo": "",
+      "demo": "",
+      "tech": [
+        "Java",
+        "Spring Boot",
+        "WebSockets",
+        "Spring Security",
+        "JWT",
+        "PostgreSQL",
+        "Angular",
+        "Angular CDK",
+        "Email Scheduler"
+      ]
     }
   ],
+  "certificates": [],
   "skills": [
     {
       "id": "skl01",
       "group": "Languages",
       "items": [
+        "Java",
+        "JavaScript",
         "TypeScript",
         "Python",
         "SQL"
@@ -81,47 +247,124 @@
     },
     {
       "id": "skl02",
-      "group": "Frameworks",
+      "group": "Backend",
       "items": [
-        "Angular",
-        "Express"
+        "Spring Boot",
+        "Spring MVC",
+        "Spring",
+        "REST APIs",
+        "Microservices",
+        "Hibernate/JPA",
+        "iBatis",
+        "JDBC",
+        "Struts 1.x",
+        "JSP"
       ]
     },
     {
       "id": "skl03",
+      "group": "Frontend",
+      "items": [
+        "Angular",
+        "Angular Material",
+        "Next.js",
+        "React",
+        "HTML5",
+        "CSS3",
+        "Bootstrap"
+      ]
+    },
+    {
+      "id": "jzda64u4",
+      "group": "Databases",
+      "items": [
+        "PostgreSQL",
+        "MySQL",
+        "Oracle",
+        "DB2"
+      ]
+    },
+    {
+      "id": "ww05ryzn",
+      "group": "DevOps & Cloud",
+      "items": [
+        "OpenShift",
+        "Kubernetes",
+        "Jenkins",
+        "Bamboo",
+        "CI/CD",
+        "WebSphere",
+        "Maven",
+        "Git",
+        "Bitbucket",
+        "Object Storage"
+      ]
+    },
+    {
+      "id": "4rhscc3h",
+      "group": "Security",
+      "items": [
+        "JWT",
+        "Keycloak",
+        "Role-Based Access Control"
+      ]
+    },
+    {
+      "id": "k9qz74cx",
+      "group": "Testing",
+      "items": [
+        "JUnit",
+        "Mockito",
+        "Postman",
+        "Swagger"
+      ]
+    },
+    {
+      "id": "05x2qzg4",
       "group": "Tools",
       "items": [
-        "Git",
-        "Docker",
-        "GitHub Actions"
+        "IntelliJ IDEA",
+        "Eclipse",
+        "VS Code"
+      ]
+    },
+    {
+      "id": "y0rfqu1u",
+      "group": "Other",
+      "items": [
+        "Batch Processing",
+        "Email Schedulers",
+        "SQL Optimization",
+        "Data Sync Automation",
+        "Agile/Scrum",
+        "Debugging"
       ]
     }
   ],
   "education": [
     {
       "id": "edu01",
-      "qualification": "B.Tech, Computer Science",
-      "school": "Your University",
-      "start": "2020",
-      "end": "2024",
-      "detail": ""
-    }
-  ],
-  "blogs": [
+      "qualification": "MS, Data Science",
+      "school": "DePaul University",
+      "start": "2023",
+      "end": "2025",
+      "detail": "Chicago, IL"
+    },
     {
-      "id": "blg01",
-      "title": "An example post",
-      "url": "https://example.com/post",
-      "source": "Personal blog",
-      "date": "Jun 2026",
-      "excerpt": "A sentence describing what the post covers."
+      "id": "kq7zr5m2",
+      "qualification": "BTech, Electronics and Communication Engineering",
+      "school": "MVGR College of Engineering",
+      "start": "2018",
+      "end": "2022",
+      "detail": "Vizianagaram, India"
     }
   ],
+  "blogs": [],
   "visible": {
     "about": true,
     "experience": true,
     "projects": true,
-    "certificates": true,
+    "certificates": false,
     "skills": true,
     "education": true,
     "blogs": true
